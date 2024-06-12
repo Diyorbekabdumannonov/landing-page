@@ -1,136 +1,292 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./output.css" />
-    <!-- <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-      integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    /> -->
-    <title>Document</title>
-  </head>
-  <body>
-    <section class="lg:py-8 py-4 border-b-2 border-b-lightgray px-4 xl:px--">
-      <div class="inner-container flex justify-between items-center">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="./output.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
+    rel="stylesheet">
+  <script src="./index.js" defer></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/go.min.js"></script>
+  <script>hljs.highlightAll();</script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+  <title>Document</title>
+</head>
+
+<body onmousemove="coordinate(event)">
+  <header class="relative h-screen md:overflow-hidden">
+    <nav class="bg-light h-12 px-5 relative z-50">
+      <div class="inner-container h-full mx-atuo flex items-center justify-between">
         <div class="flex lg:gap-3 gap-1 items-center">
-          <img src="./assets/logo.png" alt="logo" class="logo" />
-          <h3 class="font-semibold lg:text-24 text-primary">AngularCh</h3>
+          <img src="./assets/logo.png" alt="logo" class="w-5 cursor-pointer relative z-50">
+          <h3 class="font-semibold text-primary">AngularCh</h3>
         </div>
-        <div class="items-center hidden md:flex">
-          <div
-            class="flex items-center lg:gap-10 gap-5 lg:mr-16 mr-8 text-primary font-medium lg:text-18"
-          >
-            <select
-              name="features"
-              id="features"
-              class="form-select"
-            >
-              <option selected value="Features">Features</option>
-            </select>
-            <a href="#">Team</a>
-            <select
-              name="recource"
-              id="recource"
-              class="form-select"
-            >
-              <option selected value="Recource">Recource</option>
-            </select>
-            <a href="#">Careers</a>
-            <a href="#">Residents</a>
+        <ul class="md:flex hidden items-center h-full text-sm font-normal gap-8">
+          <li class="h-full relative z-50">
+            <button class="h-full text-gray-700 hover:text-black">Research</button>
+          </li>
+          <li class="h-full relative z-50">
+            <button class="h-full text-gray-700 hover:text-black">Products</button>
+          </li>
+          <li class="h-full relative z-50">
+            <button class="h-full text-gray-700 hover:text-black">Safety</button>
+          </li>
+          <li class="h-full relative z-50">
+            <button class="h-full text-gray-700 hover:text-black">Company</button>
+          </li>
+          <div class="absolute top-10 contianer-lg mx-auto px-5 left-0 w-full z-40">
+            <div
+              class="bg-light/60 backdrop-blur-[50px] z-10 absolute opacity-0 overlay w-full duration-[0.4s] -translate-y-[110%] h-screen top-0 left-0">
+            </div>
+            <div class="relative hidden md:block inner-container h-0 overflow-hidden duration-[1.2s] dropdown-cont">
+              <div class="dropdown z-20 flex pt-4 h-[200px] duration-500 items-start text-black w-full top-0 absolute">
+              </div>
+            </div>
           </div>
-          <div class="flex lg:gap-10 gap-4 font-semibold lg:text-18">
-            <button class="text-blue">Login</button>
-            <button class="btn bg-primary">Get a demo</button>
-          </div>
+        </ul>
+        <div class="flex items-center justify-center gap-2 z-50 relative h-full">
+          <button class="relative h-full md:w-16 flex items-center search-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none" stroke="currentColor"
+              stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
+              class="w-[0.875rem] h-[0.875rem] rotate-[135deg] transition-[all] duration-500">
+              <path d="M 15,8 A 7,7 0 1,1 1,8 A 7,7 0 1,1 15,8"></path>
+            </svg>
+            <div class="search-animation"></div>
+          </button>
+          <button
+            class="w-[1.5rem] menu-btn md:hidden h-[1.5rem] flex flex-col items-center justify-center gap-[0.1875rem]">
+            <div class="w-[0.9375rem] h-[0.125rem] bg-dark-gray rounded-full transition ease-curve-d duration-300">
+            </div>
+            <div class="w-[0.9375rem] h-[0.125rem] bg-dark-gray rounded-full transition ease-curve-d duration-300">
+            </div>
+            <div class="w-[0.9375rem] h-[0.125rem] bg-dark-gray rounded-full transition ease-curve-d duration-300">
+            </div>
+          </button>
         </div>
-        <button class="flex md:hidden">
-          <i class="fa-solid fa-hamburger"></i>
-        </button>
       </div>
-    </section>
-    <section class="flex lg:pl-14 gap-14 cont flex-col lg:flex-row">
-      <div class="flex-1 lg:py-24 sm:py-16 py-8 flex flex-col items-start">
-        <div
-          class="flex bg-lightblue py-1 px-3 gap-2 items-center rounded-full mx-auto lg:mx-0"
-        >
-          <i class="fa-regular fa-circle-check text-blue"></i>
-          <p class="font-semibold text-blue">Property Management Solutions</p>
+    </nav>
+    <div class="relative contianer-lg mx-auto px-5 left-0 w-full z-40">
+      <div
+        class="bg-light/60 backdrop-blur-[50px] absolute opacity-0 overlay-mobile duration-300 w-full -translate-y-[100%] h-screen top-0 left-0">
+      </div>
+      <div class="relative hidden md:block inner-container h-0 overflow-hidden duration-[1.2s] dropdown-cont">
+        <div class="dropdown flex pt-4 h-[200px] duration-500 items-start text-black w-full top-0 absolute">
         </div>
-        <h1 class="title">
-          Count on AngularCh <br class="hidden xl:block" />
-          to make your residents even happier
+      </div>
+    </div>
+    <div class="relative z-40 searchbar h-[200px] duration-300 -translate-y-[240px] px-5">
+      <div class="inner-container relative pt-28">
+        <input type="text" class="input" placeholder="Press ‘Return’ to search">
+      </div>
+    </div>
+    <div class="absolute top-12 w-full z-40 mobile-dropdown md:hidden overflow-hidden h-0 duration-200 px-5">
+      <div
+        class="bg-light/60 backdrop-blur-[50px] opacity-0 overlay-nav-mobile duration-500 absolute w-full h-screen top-0 left-0">
+      </div>
+      <div class="relative pt-5 nav flex flex-col gap-6 w-full">
+        <div class="w-full">
+          <div class="flex items-center justify-between">
+            <h3 class="fadeIn">Research</h3>
+            <img class="hidden cursor-pointer arrow" src="./assets/arrow-down.svg" alt="arrow">
+          </div>
+          <div class="accordion h-0 duration-300 transition overflow-hidden">
+            <ul>
+              <li class="title"><a href="#">Our research</a></li>
+              <li><a href="#">Overview</a></li>
+              <li><a href="#">Index</a></li>
+            </ul>
+            <ul>
+              <li class="title"><a href="#">Latest advancements</a></li>
+              <li><a href="#">GPT-4o</a></li>
+              <li><a href="#">DALL·E 3</a></li>
+              <li><a href="#">Sora</a></li>
+            </ul>
+            <ul>
+              <li><a href="#">
+                  <img
+                    src="https://images.ctfassets.net/kftzwdyauwt9/51cvGC9YL1Fy2Iflb3KkDb/a8a9db1572e0bb7009f09a9b39aeafe9/GPT-4o-Video_Card.png?w=1920&q=90&fm=webp"
+                    class="img" alt="img">
+                </a></li>
+              <li class="mt-4"><a href="#">Hello GPT-4o</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="w-full">
+          <div class="flex items-center justify-between">
+            <h3 class="fadeIn">Products</h3>
+            <img class="hidden cursor-pointer arrow" src="./assets/arrow-down.svg" alt="arrow">
+          </div>
+          <div class="accordion h-0 overflow-hidden">
+            <ul>
+              <li class="title"><a href="#">Our research</a></li>
+              <li><a href="#">Overview</a></li>
+              <li><a href="#">Index</a></li>
+            </ul>
+            <ul>
+              <li class="title"><a href="#">Latest advancements</a></li>
+              <li><a href="#">GPT-4o</a></li>
+              <li><a href="#">DALL·E 3</a></li>
+              <li><a href="#">Sora</a></li>
+            </ul>
+            <ul>
+              <li><a href="#">
+                  <img
+                    src="https://images.ctfassets.net/kftzwdyauwt9/51cvGC9YL1Fy2Iflb3KkDb/a8a9db1572e0bb7009f09a9b39aeafe9/GPT-4o-Video_Card.png?w=1920&q=90&fm=webp"
+                    class="img" alt="img">
+                </a></li>
+              <li class="mt-4"><a href="#">Hello GPT-4o</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="w-full">
+          <div class="flex items-center justify-between">
+            <h3 class="fadeIn">Safety</h3>
+            <img class="hidden cursor-pointer arrow" src="./assets/arrow-down.svg" alt="arrow">
+          </div>
+          <div class="accordion h-0 overflow-hidden">
+            <ul>
+              <li class="title"><a href="#">Our research</a></li>
+              <li><a href="#">Overview</a></li>
+              <li><a href="#">Index</a></li>
+            </ul>
+            <ul>
+              <li class="title"><a href="#">Latest advancements</a></li>
+              <li><a href="#">GPT-4o</a></li>
+              <li><a href="#">DALL·E 3</a></li>
+              <li><a href="#">Sora</a></li>
+            </ul>
+            <ul>
+              <li><a href="#">
+                  <img
+                    src="https://images.ctfassets.net/kftzwdyauwt9/51cvGC9YL1Fy2Iflb3KkDb/a8a9db1572e0bb7009f09a9b39aeafe9/GPT-4o-Video_Card.png?w=1920&q=90&fm=webp"
+                    class="img" alt="img">
+                </a></li>
+              <li class="mt-4"><a href="#">Hello GPT-4o</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="w-full">
+          <div class="flex items-center justify-between">
+            <h3 class="fadeIn">Company</h3>
+            <img class="hidden cursor-pointer arrow" src="./assets/arrow-down.svg" alt="arrow">
+          </div>
+          <div class="accordion h-0 overflow-hidden">
+            <ul>
+              <li class="title"><a href="#">Our research</a></li>
+              <li><a href="#">Overview</a></li>
+              <li><a href="#">Index</a></li>
+            </ul>
+            <ul>
+              <li class="title"><a href="#">Latest advancements</a></li>
+              <li><a href="#">GPT-4o</a></li>
+              <li><a href="#">DALL·E 3</a></li>
+              <li><a href="#">Sora</a></li>
+            </ul>
+            <ul>
+              <li><a href="#">
+                  <img
+                    src="https://images.ctfassets.net/kftzwdyauwt9/51cvGC9YL1Fy2Iflb3KkDb/a8a9db1572e0bb7009f09a9b39aeafe9/GPT-4o-Video_Card.png?w=1920&q=90&fm=webp"
+                    class="img" alt="img">
+                </a></li>
+              <li class="mt-4"><a href="#">Hello GPT-4o</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+  <div class="absolute w-screen overflow-hidden top-24 hero duration-300">
+    <section class="flex lg:pl-14 py-6 cont flex-col lg:flex-row items-center">
+      <div class="flex-1 lg:py-24 sm:py-16 py-8 flex flex-col items-start">
+        <h1 class="title !mt-0">
+          See how we can help you reach your goals
         </h1>
         <p
-          class="sm:mt-10 mt-4 sm:text-18 text-sm tracking-normal text-gray-700 font-medium text-center lg:text-left mx-auto lg:mx-0"
-        >
-          AngularCh handles your maintenance calls and requests and
-          <br class="hidden xl:block" />
-          connects your residents to pros for house cleaning, furniture
-          <br class="hidden xl:block" />
-          assembly, emergency services, and much more.
+          class="sm:mt-10 mt-4 sm:text-18 text-sm tracking-normal text-gray-700 font-medium max-w-96 text-center lg:text-left mx-auto lg:mx-0">
+          Answer two questions to help us match our expertise and software solutions to your sector.
         </p>
-        <div class="sm:mt-10 mt-4 mx-auto lg:mx-0">
-          <button class="btn bg-blue mr-2">Get a demo</button>
-          <button class="btn !text-primary border">Learn more</button>
+        <h3 class="mt-8 font-bold text-gray750">What is your industry?</h3>
+        <div class="flex mt-8 items-center gap-4">
+          <div class="dot dot-active"></div>
+          <div class="dot"></div>
         </div>
-        <div
-          class="flex items-center flex-col sm:flex-row justify-center lg:justify-start w-full mt-10 gap-6"
-        >
-          <div class="flex items-center">
-            <i
-              class="fa-solid fa-location-dot bg-green text-white px-2 py-1.5 text-sm rounded-full"
-            ></i>
-            <p class="text-18 font-semibold ml-2">Professional teams</p>
-          </div>
-          <div class="flex items-center">
-            <i
-              class="fa-solid fa-location-dot bg-green text-white px-2 py-1.5 text-sm rounded-full"
-            ></i>
-            <p class="text-18 font-semibold ml-2">Professional teams</p>
-          </div>
+        <div class="mt-8 flex items-center flex-wrap gap-y-6 gap-x-4 btn-container">
+          <button class="btn-primary">Frontend</button>
+          <button class="btn-primary">Backend</button>
         </div>
       </div>
-      <div class="flex-1 hidden lg:block">
-        <img
-          src="./assets/banner.png"
-          alt="banner"
-          class="w-full h-full object-cover"
-        />
+      <div class="flex-1 hidden lg:flex items-center justify-center">
+        <pre class=""><code class="javascript">
+Lorem ipsum, dolor sit amet consectetur 
+adipisicing elit. Itaque reprehenderit 
+vero sint explicabo eligendi, porro ratione
+excepturi magnam ad, veritatis quaerat officiis
+nisi quam iusto quibusdam. Exercitationem
+perferendis maiores reiciendis iure.
+Numquam eligendi quidem laudantium. Incidunt
+obcaecati perspiciatis assumenda illum nobis
+sit animi aut ad veniam fugiat, eos laborum ullam.
+obcaecati perspiciatis assumenda illum nobis
+sit animi aut ad veniam fugiat, eos laborum ullam.
+          </code>
+<code class="javascript !hidden">
+  import { JsonObject } from '@angular-devkit/core';
+
+  interface Options extends JsonObject {
+    source: string;
+    destination: string;
+  }
+  
+  export default createBuilder(copyFileBuilder);
+  
+  async function copyFileBuilder(
+    options: Options,
+    context: BuilderContext,
+  ): Promise<BuilderOutput> {
+  }</code>
+<code class="javascript !hidden">
+  <?php
+  // create an object
+  $Lightning = new Car();
+  
+  // show object properties
+  echo $Lightning->model;
+  // prints: mysql link
+  $c = mysql_connect();
+  echo get_resource_type($c) . "\n";
+  
+  // prints: stream
+  $fp = fopen("foo", "w");
+  echo get_resource_type($fp) . "\n";
+  
+  // prints: domxml document
+  $doc = new_xmldoc("1.0");
+  echo get_resource_type($doc->doc) . "\n";
+  ?></code></pre>
       </div>
     </section>
-    <section class="inner-container sm:py-32 py-16 px-4 xl:px-0">
-      <div class="grid lg:grid-cols-4 sm:grid-cols-2 grid-cols-1 gap-20">
-        <div class="flex flex-col items-center text-center">
-          <img src="./assets/example.png" alt="example" />
-          <h4 class="text-18 mt-5 font-bold">Multiple Channels</h4>
-          <p class="text-gray-700 font-normal">
-            Residents can contact us by phone, text, or our dashboard
-          </p>
+    <section class="inner-container py-16 px-4 xl:px-0">
+      <div class="grid lg:grid-cols-5 sm:grid-cols-2 grid-cols-1 gap-20">
+        <div class="card">
+          <img src="./assets/GitHub-Logo.png" alt="logo">
         </div>
-        <div class="flex flex-col items-center text-center">
-          <img src="./assets/example.png" alt="example" />
-          <h4 class="text-18 mt-5 font-bold">Multiple Channels</h4>
-          <p class="text-gray-700 font-normal">
-            Residents can contact us by phone, text, or our dashboard
-          </p>
+        <div class="card">
+          <img src="./assets/upwork.jpg" alt="logo">
         </div>
-        <div class="flex flex-col items-center text-center">
-          <img src="./assets/example.png" alt="example" />
-          <h4 class="text-18 mt-5 font-bold">Multiple Channels</h4>
-          <p class="text-gray-700 font-normal">
-            Residents can contact us by phone, text, or our dashboard
-          </p>
+        <div class="card">
+          <img src="./assets/vercel.jpg" alt="logo">
         </div>
-        <div class="flex flex-col items-center text-center">
-          <img src="./assets/example.png" alt="example" />
-          <h4 class="text-18 mt-5 font-bold">Multiple Channels</h4>
-          <p class="text-gray-700 font-normal">
-            Residents can contact us by phone, text, or our dashboard
-          </p>
+        <div class="card">
+          <img src="./assets/fiver.jpg" alt="logo">
+        </div>
+        <div class="card">
+          <img src="./assets/mdn.png" alt="logo">
         </div>
       </div>
     </section>
@@ -139,21 +295,15 @@
         <h1 class="lg:text-6xl sm:text-4xl text-3xl font-semibold text-center">
           It pays to use AngularCh
         </h1>
-        <p
-          class="text-center text-gray-700 lg:mt-9 mt-5 sm:text-18 text-sm font-normal max-w-900 mx-auto"
-        >
+        <p class="text-center text-gray-700 lg:mt-9 mt-5 sm:text-18 text-sm font-normal max-w-900 mx-auto">
           AngularCh is the only platform that combines revenue-generating
           resident amenities with maintenance software that empowers property
           managers to deliver unbeatable customer service.
         </p>
-        <div
-          class="flex items-center sm:mt-16 mt-10 xl:justify-between xl:gap-0 gap-5 flex-wrap justify-center"
-        >
+        <div class="flex items-center sm:mt-16 mt-10 xl:justify-between xl:gap-0 gap-5 flex-wrap justify-center">
           <div class="rounded-2xl bg-white shadow-xl max-w-370 overflow-hidden">
             <img src="./assets/example2.png" alt="example" />
-            <div
-              class="sm:pb-7 pb-4 sm:px-7 px-4 sm:pt-14 pt-8 flex items-center text-center flex-col"
-            >
+            <div class="sm:pb-7 pb-4 sm:px-7 px-4 sm:pt-14 pt-8 flex items-center text-center flex-col">
               <h2 class="font-semibold sm:text-24 text-xl">
                 No More Maintenance Call
               </h2>
@@ -168,9 +318,7 @@
           </div>
           <div class="rounded-2xl bg-white shadow-xl max-w-370 overflow-hidden">
             <img src="./assets/example2.png" alt="example" />
-            <div
-              class="sm:pb-7 pb-4 sm:px-7 px-4 sm:pt-14 pt-8 flex items-center text-center flex-col"
-            >
+            <div class="sm:pb-7 pb-4 sm:px-7 px-4 sm:pt-14 pt-8 flex items-center text-center flex-col">
               <h2 class="font-semibold sm:text-24 text-xl">
                 No More Maintenance Call
               </h2>
@@ -185,9 +333,7 @@
           </div>
           <div class="rounded-2xl bg-white shadow-xl max-w-370 overflow-hidden">
             <img src="./assets/example2.png" alt="example" />
-            <div
-              class="sm:pb-7 pb-4 sm:px-7 px-4 sm:pt-14 pt-8 flex items-center text-center flex-col"
-            >
+            <div class="sm:pb-7 pb-4 sm:px-7 px-4 sm:pt-14 pt-8 flex items-center text-center flex-col">
               <h2 class="font-semibold sm:text-24 text-xl">
                 No More Maintenance Call
               </h2>
@@ -203,21 +349,15 @@
         </div>
       </div>
     </section>
-    <section
-      class="inner-container px-4 xl:px-0 flex lg:flex-row flex-col-reverse justify-between sm:mt-28 mt-16"
-    >
+    <section class="inner-container px-4 xl:px-0 flex lg:flex-row flex-col-reverse justify-between sm:mt-28 mt-16">
       <div class="flex-1 mt-12 lg:mt-0">
         <div class="bg-lightblue py-1 px-3 gap-2 w-max rounded mx-auto lg:mx-0">
           <p class="font-bold text-blue text-sm">WHY ANGULARCH?</p>
         </div>
-        <h2
-          class="mt-6 lg:text-5xl sm:text-4xl text-2xl leading-tight font-semibold text-center lg:text-left"
-        >
+        <h2 class="mt-6 lg:text-5xl sm:text-4xl text-2xl leading-tight font-semibold text-center lg:text-left">
           Easily to earn money while delivering unbeatable customer service.
         </h2>
-        <p
-          class="sm:mt-7 mt-4 text-sm sm:text-base font-medium text-gray-700 text-center lg:text-left"
-        >
+        <p class="sm:mt-7 mt-4 text-sm sm:text-base font-medium text-gray-700 text-center lg:text-left">
           For the first time ever, property managers can increase their
           <br class="hidden sm:block" />
           revenue with a one-of-a-kind resident amenity while levelling up
@@ -229,18 +369,10 @@
             LEARN MORE
           </button>
         </div>
-        <img
-          src="./assets/example4.png"
-          alt="example"
-          class="my-10 xl:w-auto lg:w-5/6 sm:w-1/3 mx-auto lg:mx-0"
-        />
+        <img src="./assets/example4.png" alt="example" class="my-10 xl:w-auto lg:w-5/6 sm:w-1/3 mx-auto lg:mx-0" />
         <div class="flex items-start gap-4 justify-center lg:justify-start">
           <div>
-            <img
-              src="./assets/example5.png"
-              alt="example"
-              class="rounded-full"
-            />
+            <img src="./assets/example5.png" alt="example" class="rounded-full" />
           </div>
           <div>
             <h4 class="font-semibold sm:text-xl">
@@ -252,11 +384,7 @@
         </div>
       </div>
       <div class="flex-1 flex lg:justify-end justify-center">
-        <img
-          src="./assets/example3.png"
-          alt="example"
-          class="image rounded-2xl"
-        />
+        <img src="./assets/example3.png" alt="example" class="image rounded-2xl" />
       </div>
     </section>
     <section class="bg-primary mt-28 lg:py-24 py-16 text-white">
@@ -265,15 +393,9 @@
           We're an innovative platform <br class="hidden sm:block" />
           that will gives you:
         </h1>
-        <div
-          class="flex items-center flex-col md:flex-row justify-center mt-16"
-        >
-          <div
-            class="bg-gray650 sm:p-8 p-4 md:mr-12 sm:w-440 w-full hover:bg-blue500 visibility"
-          >
-            <div
-              class="bg-blue300 w-16 h-16 flex items-center justify-center rounded-full mt-2 icon"
-            >
+        <div class="flex items-center flex-col md:flex-row justify-center mt-16">
+          <div class="bg-gray650 sm:p-8 p-4 md:mr-12 sm:w-440 w-full hover:bg-blue500 visibility">
+            <div class="bg-blue300 w-16 h-16 flex items-center justify-center rounded-full mt-2 icon">
               <i class="fa-solid text-3xl text-blue fa-glasses"></i>
             </div>
             <h3 class="mt-8 text-3xl font-semibold">Full visibility</h3>
@@ -289,19 +411,13 @@
               <i class="fa-solid fa-arrow-right-long"></i>
               <p class="text-18">Record and save whole process</p>
             </div>
-            <button
-              class="btn bg-blue w-full mt-10 flex items-center justify-center gap-2"
-            >
+            <button class="btn bg-blue w-full mt-10 flex items-center justify-center gap-2">
               <p>Learn more</p>
               <i class="fa-sharp fa-solid fa-arrow-right text-sm"></i>
             </button>
           </div>
-          <div
-            class="bg-gray650 sm:p-8 p-4 sm:w-440 w-full mt-16 md:mt-0 hover:bg-blue500 visibility"
-          >
-            <div
-              class="bg-blue300 w-16 h-16 flex items-center justify-center rounded-full mt-2 icon"
-            >
+          <div class="bg-gray650 sm:p-8 p-4 sm:w-440 w-full mt-16 md:mt-0 hover:bg-blue500 visibility">
+            <div class="bg-blue300 w-16 h-16 flex items-center justify-center rounded-full mt-2 icon">
               <i class="fa-solid text-3xl text-blue fa-glasses"></i>
             </div>
             <h3 class="mt-8 text-3xl font-semibold">Full visibility</h3>
@@ -317,9 +433,7 @@
               <i class="fa-solid fa-arrow-right-long"></i>
               <p class="text-18">Record and save whole process</p>
             </div>
-            <button
-              class="btn bg-blue w-full mt-10 flex items-center justify-center gap-2"
-            >
+            <button class="btn bg-blue w-full mt-10 flex items-center justify-center gap-2">
               <p>Learn more</p>
               <i class="fa-sharp fa-solid fa-arrow-right text-sm"></i>
             </button>
@@ -333,9 +447,7 @@
         saying about us
       </h3>
       <div class="flex justify-center">
-        <div
-          class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-x-6 gap-y-8 md:mt-16 mt-10"
-        >
+        <div class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-x-6 gap-y-8 md:mt-16 mt-10">
           <div class="max-w-340">
             <div class="flex items-center gap-3">
               <i class="fa-solid fa-star text-yellow-400 text-2xl"></i>
@@ -351,11 +463,7 @@
             </p>
             <div class="flex items-start gap-4 mt-7">
               <div>
-                <img
-                  src="./assets/example5.png"
-                  alt="example"
-                  class="rounded-full"
-                />
+                <img src="./assets/example5.png" alt="example" class="rounded-full" />
               </div>
               <div>
                 <h4 class="font-semibold text-xl">Jhonny Wolff</h4>
@@ -380,11 +488,7 @@
             </p>
             <div class="flex items-start gap-4 mt-7">
               <div>
-                <img
-                  src="./assets/example5.png"
-                  alt="example"
-                  class="rounded-full"
-                />
+                <img src="./assets/example5.png" alt="example" class="rounded-full" />
               </div>
               <div>
                 <h4 class="font-semibold text-xl">Jhonny Wolff</h4>
@@ -409,11 +513,7 @@
             </p>
             <div class="flex items-start gap-4 mt-7">
               <div>
-                <img
-                  src="./assets/example5.png"
-                  alt="example"
-                  class="rounded-full"
-                />
+                <img src="./assets/example5.png" alt="example" class="rounded-full" />
               </div>
               <div>
                 <h4 class="font-semibold text-xl">Jhonny Wolff</h4>
@@ -431,9 +531,7 @@
           In case you're curious for other prove from our
           <br class="hidden sm:block" />
           loyal clients,
-          <a href="#" class="text-blue font-semibold underline"
-            >click here to see all</a
-          >
+          <a href="#" class="text-blue font-semibold underline">click here to see all</a>
         </p>
         <div class="flex items-center gap-2">
           <button class="btn lg:px-4 px-3 rounded-full bg-white border">
@@ -447,8 +545,7 @@
     </section>
     <section class="px-4 xl:px-0">
       <div
-        class="inner-container gradient flex items-center justify-between mt-28 rounded-xl overflow-hidden max-h-380"
-      >
+        class="inner-container gradient flex items-center justify-between mt-28 rounded-xl overflow-hidden max-h-380">
         <div class="lg:pl-20 md:pl-12 lg:flex-[3] flex-1 p-6 md:p-0">
           <h3 class="lg:text-5xl text-3xl font-semibold leading-snug">
             See why property managers love using AngularCH
@@ -464,10 +561,9 @@
       </div>
     </section>
     <footer class="bg-primary py-16 text-white mt-28">
-      <div
-        class="inner-container px-4 xl:px-0 flex-col md:flex-row flex items-start justify-between"
-      >
-        <div class="flex items-start flex-col sm:flex-row justify-center lg:gap-14 md:gap-5 sm:justify-between md:justify-normal w-full gap-y-8 flex-wrap">
+      <div class="inner-container px-4 xl:px-0 flex-col md:flex-row flex items-start justify-between">
+        <div
+          class="flex items-start flex-col sm:flex-row justify-center lg:gap-14 md:gap-5 sm:justify-between md:justify-normal w-full gap-y-8 flex-wrap">
           <div class="flex gap-3 items-center md:w-full xl:w-auto w-full sm:w-auto">
             <img src="./assets/logo.png" alt="logo" class="logo rounded-full" />
             <h3 class="font-semibold text-24 text-white">AngularCh</h3>
@@ -520,8 +616,7 @@
         <hr class="mt-10 border-gray-700" />
         <div class="flex justify-between flex-col md:flex-row items-center mt-5">
           <div
-            class="flex items-center text-gray-300 flex-col sm:flex-row sm:text-sm text-xs font-normal gap-1 sm:gap-5"
-          >
+            class="flex items-center text-gray-300 flex-col sm:flex-row sm:text-sm text-xs font-normal gap-1 sm:gap-5">
             <p>2022 AngularCh. All right reserved</p>
             <a href="#" class="underline">Privacy Policy</a>
             <a href="#" class="underline">Terms of Service</a>
@@ -536,5 +631,7 @@
         </div>
       </div>
     </footer>
-  </body>
+  </div>
+</body>
+
 </html>

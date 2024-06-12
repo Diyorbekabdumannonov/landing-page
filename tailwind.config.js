@@ -19,6 +19,13 @@ module.exports = {
         gray650: "#272d44",
         blue300: "#9fc9fd",
         blue500: "#3957d3",
+        gray750: "#27273d",
+        light: '#fff',
+        secondary: "#8c8c8c",
+        'dark-gray': '#080808',
+        gray: {
+          660: "#616161"
+        }
       },
       lineHeight: {
         70: "70px",
@@ -31,10 +38,14 @@ module.exports = {
         900: "900px",
         370: "370px",
         340: "340px",
+        1088: "1088px"
       },
       width: {
         440: "440px",
       },
+      transitionProperty: {
+        'height': 'height',
+      }
     },
   },
   plugins: [],
